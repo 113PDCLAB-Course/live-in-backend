@@ -31,7 +31,11 @@ SECRET_KEY=  # 任意填入， django 用於加密用
 docker exec -it live_in_backend bash
 # 進入 live_in_backend container 
 live_in_backend# python manage.py migrate
-live_in_backend# python manage.py loaddata
+live_in_backend# python manage.py loaddata ./job/default_data/*
+live_in_backend# python manage.py loaddata ./job/fake_data/*
+live_in_backend# python manage.py loaddata ./apartment/default_data/*
+live_in_backend# python manage.py loaddata ./apartment/fake_data/*
+
 ```
 
 ### 一點點簡單的 API TEST 文件
@@ -39,8 +43,8 @@ live_in_backend# python manage.py loaddata
   * 參數 `address`: 你的地址
   * 參數 `distinct`: 區域是 pk 值，紀錄在 json 文件
   * 參數 `min_salary`: 最低要求薪水
-  * example: `http://<localhost>:8000/api/jobs/?address=%E6%9D%B1%E5%9C%92%E8%A1%9728%E5%B7%B727%E8%99%9F%E5%9B%9B%E6%A8%93&district=6&min_salary=0`
-* post job 資料 `http://<localhost>:8000/api/jobs/`
+  * example: `http://<backend-host>:8000/api/jobs/?address=%E6%9D%B1%E5%9C%92%E8%A1%9728%E5%B7%B727%E8%99%9F%E5%9B%9B%E6%A8%93&district=6&min_salary=0`
+* post job 資料 `http://<backend-host>:8000/api/jobs/`
   * 參數
     * url 網址
     * name 公司名稱
